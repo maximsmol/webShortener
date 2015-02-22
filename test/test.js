@@ -21,7 +21,7 @@ var it = global.it;
 
 //
 // Tests
-describe('Testing', function test()
+describe('Output test', function output()
 {
 	it('Result should be ideal', function test()
 	{
@@ -42,6 +42,21 @@ describe('Testing', function test()
 		assert.strictEqual(
 			fs.readFileSync(jsFile+'.ideal').toString(),
 			fs.readFileSync(jsFile+'.parsed').toString()
+		);
+	});
+});
+
+describe('Replacement generator test', function stress()
+{
+	it('Result should be ideal', function test()
+	{
+		var htmlFile = './test/assets/generator.html';
+
+		webShortener([htmlFile], [], []);
+
+		assert.strictEqual(
+			fs.readFileSync(htmlFile+'.ideal').toString(),
+			fs.readFileSync(htmlFile+'.parsed').toString()
 		);
 	});
 });
