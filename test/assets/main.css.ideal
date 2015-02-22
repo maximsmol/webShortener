@@ -1,0 +1,74 @@
+#a
+{
+	color: #fff;
+}
+
+.a
+{
+	color: #fff;
+}
+
+.a#a
+{
+	color: #fff;
+}
+
+#a.a
+{
+	color: #fff;
+}
+
+.a:hover
+{
+	color: #fff;
+}
+
+#a:hover
+{
+	color: #fff;
+}
+
+.a:hover
+{
+	reallyLongClassNameWow-hyphen_andStuff: #fff;
+}
+
+.b:hover
+{
+	reallyLongIdWow-hyphen_andStuff: #fff;
+}
+
+.a #a
+{
+	color: #fff;
+}
+
+#a .a
+{
+	color: #fff;
+}
+
+.a > #a
+{
+	color: #fff;
+}
+
+#a > .a
+{
+	color: #fff;
+}
+
+.a:not(#a)
+{
+	color: #fff;
+}
+
+#a:not(.a)
+{
+	color: #fff;
+}
+
+*
+{
+	color: #fff;
+}
