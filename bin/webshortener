@@ -11,6 +11,14 @@ var webShortener = require('../lib/webShortener.js');
 
 var argv = require('minimist')(process.argv.slice(2));
 
+if (process.argv.length < 3)
+{
+	console.log('Usage:');
+	console.log('webshortener [-h path] [--html path]',
+				'[-c path] [--css path] [-j path] [--js path] path ...');
+	process.exit(1);
+}
+
 var htmlFiles = [];
 var jsFiles = [];
 var cssFiles = [];
