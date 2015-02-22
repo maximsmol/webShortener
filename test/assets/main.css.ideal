@@ -33,7 +33,7 @@
 	reallyLongClassNameWow-hyphen_andStuff: #fff;
 }
 
-.b:hover
+#a:hover
 {
 	reallyLongIdWow-hyphen_andStuff: #fff;
 }
@@ -69,6 +69,16 @@
 }
 
 *
+{
+	color: #fff;
+}
+
+.b
+{
+	color: #fff;
+}
+
+#b
 {
 	color: #fff;
 }
