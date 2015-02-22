@@ -1,0 +1,51 @@
+.TH webshorten 1 2015-02-22
+.SH webshorten \- Utility for shortening ids and classnames.
+.SH SYNOPSIS
+.B webshorten
+[\fB\-h\fR \fIpath\fR]
+[\fB\-\-html\fR=\fIpath\fR]
+[\fB\-c\fR \fIpath\fR]
+[\fB\-\-css\fR=\fIpath\fR]
+[\fB\-j\fR \fIpath\fR]
+[\fB\-\-js\fR=\fIpath\fR]
+[\fIpath\fR ...]
+.SH DESCRIPTION
+.B webshorten
+Utility for shortening ids and classnames.
+.SH OPTIONS
+.TP
+.BR \-h ", " \-\-html=\fIpath\fR
+Search for html files in \fIpath\fR
+.TP
+.BR \-c ", " \-\-css=\fIpath\fR
+Search for css files in \fIpath\fR
+.TP
+.BR \-j ", " \-\-js=\fIpath\fR
+Search for javascript files in \fIpath\fR
+.SH PATH FORMAT
+Path is a path to a \fIhtml\fR, \fIcss\fR or \fIjs\fR file
+or a folder, containing \fIhtml\fR, \fIcss\fR or \fIjs\fR files.
+Folders are traversed recursively.
+.SH EXAMPLE
+To shorten \fIindex.html\fR \fImain.css\fR and \fImain.js\fR file use:
+.PP
+.nf
+.RS
+\fBwebshorten\fR \fIindex.html\fR \fImain.css\fR \fImain.js\fR
+.RE
+.fi
+.PP
+.SH AUTHOR
+Maxim Smolin <maximsmol@gmail.com> ()
+.SH REPORTING BUGS
+Report bugs to \fIhttps://github.com/maximsmol/webShortener/issues\fR
+.SH COPYRIGHT
+The MIT License (MIT)
+
+Copyright (c) 2014 Maxim Smolin <maximsmol@gmail.com> ()
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

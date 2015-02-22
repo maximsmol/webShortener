@@ -1,0 +1,3 @@
+document.getElementById('a');
+document.getElementsByClassName('a');
+console.log(/* usual comment */'a');

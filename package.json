@@ -1,0 +1,82 @@
+{
+	"name": "webShortener",
+	"version": "0.1.0",
+	"description": "Utility for shortening ids and classnames.",
+
+	"keywords":
+	[
+		"html",
+		"css",
+		"class",
+		"classname",
+		"id",
+		"short"
+	],
+	"homepage": "https://github.com/maximsmol/webShortener",
+	"bugs":
+	{
+		"url": "https://github.com/maximsmol/webShortener/issues",
+		"email": "maximsmol@gmail.com"
+	},
+	"license": "MIT",
+
+	"author":
+	{
+		"name": "Maxim Smolin",
+		"email": "maximsmol@gmail.com",
+		"url": ""
+	},
+	"contributors":
+	{
+		"name": "Maxim Smolin",
+		"email": "maximsmol@gmail.com",
+		"url": ""
+	},
+
+	"bin": "./bin/webshorten",
+	"man": "./man/webshorten.1",
+
+	"main": "./lib/webShortener.js",
+
+	"directories":
+	{
+		"lib": "./lib/",
+		"bin": "./bin/",
+		"man": "./man/",
+		"doc": "./doc/",
+		"example": "./example/"
+	},
+	"repository":
+	{
+		"type": "git",
+		"url": "https://github.com/maximsmol/webShortener.git"
+	},
+
+	"scripts":
+	{
+		"test": "NODE_ENV=test YOURPACKAGE_COVERAGE=1 ./node_modules/.bin/mocha -r blanket -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
+	},
+	"config":
+	{
+		"blanket":
+		{
+			"pattern": "lib",
+			"data-cover-never": "node_modules"
+		}
+	},
+
+	"dependencies":
+	{
+		"minimist": "~1.1.0"
+	},
+	"devDependencies":
+	{
+		"blanket": "~1.1.6",
+		"mocha": "~2.1.0",
+		"mocha-lcov-reporter": "~0.0.1",
+		"coveralls": "~2.11.2"
+	},
+	"engines": {
+		"node": "~0.10.31"
+	}
+}

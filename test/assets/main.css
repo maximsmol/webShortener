@@ -1,0 +1,74 @@
+#reallyLongIdWow-hyphen_andStuff
+{
+	color: #fff;
+}
+
+.reallyLongClassNameWow-hyphen_andStuff
+{
+	color: #fff;
+}
+
+.reallyLongClassNameWow-hyphen_andStuff#reallyLongIdWow-hyphen_andStuff
+{
+	color: #fff;
+}
+
+#reallyLongIdWow-hyphen_andStuff.reallyLongClassNameWow-hyphen_andStuff
+{
+	color: #fff;
+}
+
+.reallyLongClassNameWow-hyphen_andStuff:hover
+{
+	color: #fff;
+}
+
+#reallyLongIdWow-hyphen_andStuff:hover
+{
+	color: #fff;
+}
+
+.reallyLongClassNameWow-hyphen_andStuff:hover
+{
+	reallyLongClassNameWow-hyphen_andStuff: #fff;
+}
+
+.reallyLongIdWow-hyphen_andStuff:hover
+{
+	reallyLongIdWow-hyphen_andStuff: #fff;
+}
+
+.reallyLongClassNameWow-hyphen_andStuff #reallyLongIdWow-hyphen_andStuff
+{
+	color: #fff;
+}
+
+#reallyLongIdWow-hyphen_andStuff .reallyLongClassNameWow-hyphen_andStuff
+{
+	color: #fff;
+}
+
+.reallyLongClassNameWow-hyphen_andStuff > #reallyLongIdWow-hyphen_andStuff
+{
+	color: #fff;
+}
+
+#reallyLongIdWow-hyphen_andStuff > .reallyLongClassNameWow-hyphen_andStuff
+{
+	color: #fff;
+}
+
+.reallyLongClassNameWow-hyphen_andStuff:not(#reallyLongIdWow-hyphen_andStuff)
+{
+	color: #fff;
+}
+
+#reallyLongIdWow-hyphen_andStuff:not(.reallyLongClassNameWow-hyphen_andStuff)
+{
+	color: #fff;
+}
+
+*
+{
+	color: #fff;
+}

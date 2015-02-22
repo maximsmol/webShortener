@@ -1,0 +1,73 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var path = require('path');
+var fs = require('fs');
+
+var minimist = require('minimist');
+var webShortener = require('../lib/webShortener.js');
+
+
+var argv = require('minimist')(process.argv.slice(2));
+
+var htmlFiles = [];
+var jsFiles = [];
+var cssFiles = [];
+
+
+var parsePath = function(path, addHtml, addCss, addJs)
+{
+	var file = fs.realpathSync(path);
+	if (!fs.existsSync(file))
+		throw new Error('No such file: '+file);
+
+	if (fs.statSync(path).isDirectory())
+	{
+		var files = fs.readDirSync(path);
+		for (var i = 0; i < files.length; i++)
+		{
+			parsePath(files[i]);
+		}
+
+		return;
+	}
+
+	switch (path.extname(file))
+	{
+		case '.html':
+			if (addHtml) htmlFiles.push(file);
+			break;
+
+		case '.css':
+			if (addCss) cssFiles.push(file);
+			break;
+
+		case '.js':
+			if (addJs) jsFiles.push(file);
+			break;
+	}
+};
+
+var parseArray = function(arr, addHtml, addCss, addJs)
+{
+	for (var i = 0; i < arr.length; i++)
+	{
+		parsePath(arr[i]);
+	}
+};
+
+
+parseArray(argv._, true, true, true);
+
+parseArray(argv.html, true, false, false);
+parseArray(argv.h   , true, false, false);
+
+parseArray(argv.css, false, true, false);
+parseArray(argv.c  , false, true, false);
+
+parseArray(argv.js, false, true, false);
+parseArray(argv.j , false, true, false);
+
+
+webShortener(htmlFiles, cssFiles, jsFiles);
