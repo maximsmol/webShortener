@@ -2,6 +2,7 @@
 
 'use strict';
 
+var util = require('util');
 var path = require('path');
 var fs = require('fs');
 
@@ -24,15 +25,15 @@ var jsFiles = [];
 var cssFiles = [];
 
 
-var parsePath = function(path, addHtml, addCss, addJs)
+var parsePath = function(filePath, addHtml, addCss, addJs)
 {
-	var file = fs.realpathSync(path);
+	var file = fs.realpathSync(filePath);
 	if (!fs.existsSync(file))
 		throw new Error('No such file: '+file);
 
-	if (fs.statSync(path).isDirectory())
+	if (fs.statSync(filePath).isDirectory())
 	{
-		var files = fs.readDirSync(path);
+		var files = fs.readDirSync(filePath);
 		for (var i = 0; i < files.length; i++)
 		{
 			parsePath(files[i]);
@@ -59,12 +60,18 @@ var parsePath = function(path, addHtml, addCss, addJs)
 
 var parseArray = function(arr, addHtml, addCss, addJs)
 {
+	if (arr == null) return;
+	if (!util.isArray(arr))
+	{
+		parsePath(arr);
+		return;
+	}
+
 	for (var i = 0; i < arr.length; i++)
 	{
-		parsePath(arr[i]);
+		parsePath(arr[i], addHtml, addCss, addJs);
 	}
 };
-
 
 parseArray(argv._, true, true, true);
 
@@ -76,6 +83,5 @@ parseArray(argv.c  , false, true, false);
 
 parseArray(argv.js, false, true, false);
 parseArray(argv.j , false, true, false);
-
 
 webShortener(htmlFiles, cssFiles, jsFiles);
