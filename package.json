@@ -1,6 +1,6 @@
 {
 	"name": "webshortener",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "Utility for shortening ids and classnames.",
 
 	"keywords":
