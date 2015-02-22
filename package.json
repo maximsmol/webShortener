@@ -1,6 +1,6 @@
 {
 	"name": "webshortener",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Utility for shortening ids and classnames.",
 
 	"keywords":
@@ -33,8 +33,8 @@
 		"url": ""
 	},
 
-	"bin": "./bin/webshorten",
-	"man": "./man/webshorten.1",
+	"bin": "./bin/webshortener",
+	"man": "./man/webshortener.1",
 
 	"main": "./lib/webShortener.js",
 
