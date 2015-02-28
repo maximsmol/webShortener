@@ -1,6 +1,7 @@
 document.getElementById('a');
 document.getElementsByClassName('a');
 console.log(/* usual comment */'a');
-
-console.log('b');
+//COMMENT
+/* * */
+console.log('c');
 console.log('b');
