@@ -1,3 +1,8 @@
+# v1.0.0
+1. Now uses streams
+1. Tests updated
+1. CLI broken
+
 # v0.1.5
 1. Fixed CSS regexp replacing submatches
 

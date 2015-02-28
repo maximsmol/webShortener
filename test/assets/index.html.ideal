@@ -1,1 +1,2 @@
-<div id='a' class='a' data-test='iAmATest'></div>
+TEST <div id='a' class='a b' data-test='iAmATest'></div>
+<div id='a' ida='notId' cld='notClass' clad='notClass' clasd='notClass' classd='notClass'> TEST </div>
