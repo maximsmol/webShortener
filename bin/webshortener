@@ -7,7 +7,7 @@ var path = require('path');
 var fs = require('fs');
 
 var minimist = require('minimist');
-var webShortener = require('../lib/webShortener.js');
+var Shortener = require('../lib/webShortener.js');
 
 
 var argv = require('minimist')(process.argv.slice(2));
@@ -73,6 +73,14 @@ var parseArray = function(arr, addHtml, addCss, addJs)
 	}
 };
 
+var printFinish = function(path)
+{
+	return function finished()
+	{
+		console.log('Finished parsing', path);
+	};
+};
+
 parseArray(argv._, true, true, true);
 
 parseArray(argv.html, true, false, false);
@@ -84,4 +92,30 @@ parseArray(argv.c  , false, true, false);
 parseArray(argv.js, false, true, false);
 parseArray(argv.j , false, true, false);
 
-webShortener(htmlFiles, cssFiles, jsFiles);
+var shrtnr = new Shortener();
+for (var i = 0; i < htmlFiles.length; i++)
+{
+	var file = htmlFiles[i];
+
+	fs.createReadStream(file).pipe(shrtnr.htmlShortener())
+	.pipe(fs.createWriteStream(file+'.parsed'))
+	.on('finish', printFinish(file));
+}
+
+for (i = 0; i < cssFiles.length; i++)
+{
+	var file = cssFiles[i];
+
+	fs.createReadStream(file).pipe(shrtnr.cssShortener())
+	.pipe(fs.createWriteStream(file+'.parsed'))
+	.on('finish', printFinish(file));
+}
+
+for (i = 0; i < jsFiles.length; i++)
+{
+	var file = jsFiles[i];
+
+	fs.createReadStream(file).pipe(shrtnr.jsShortener())
+	.pipe(fs.createWriteStream(file+'.parsed'))
+	.on('finish', printFinish(file));
+}

@@ -4,25 +4,50 @@
 # webShortener
 Utility for shortening ids and classnames.
 
-## How it works
-1. For HTML files all id and class attributes get a replacement and are added to the database.
+## Installation
+`npm install -g webshortener`
 
-1. For CSS files all classes and ids, that were not found in the markup get a replacement and are added to the database. This is done, because one may not use a class in the markup, but may use it in a tag generated via JS.
+## Usage
+### CLI
+`webshortener [-h path] [--html path] [-c path] [--css path] [-j path] [--js path] path ...`
+More at `man webshortener`
 
-1. For JS files special comments are used to indicate, that a substitution is to be made.
+### As a library
+#### API
+1. A container for information common to all streams
+	`new Shortener();`
+1. Shortener streams for different file types
+	* `new Shortener().htmlShortener`
+	* `new Shortener().cssShortener`
+	* `new Shortener().jsShortener`
+
+#### Example
 ```js
-console.log('Hello, .class became /* webname .class */');
+var Shortener = require('webShortener');
+
+var shrtnr = new Shortener();
+
+fs.createReadStream('./index.html').pipe(shrtnr.htmlShortener())
+.on('error', function(err)
+{
+	console.err(err);
+	process.exit(1);
+})
+.pipe(fs.createWriteStream('./index.html.parsed'));
+.on('finish', function()
+{
+	console.log('Finished parsing index.html');
+})
 ```
-becomes
-```js
-console.log('Hello, .class became abc');
-```
+
+### What gets replaced
+1. In HTML files *id* and *class* attributes get replaced
+1. In CSS files selectors, containing *ids* and *classes* get shortened
+1. In JS files *special comments* get replaced
+	`/* webname .class */`, `/* webname #id */`
 
 ## Replacement generation
 Replacement for ids and classnames is generated separately.
 E.X. `id='a' class='a'`, not `id='a' class='b'`
 
 A replacement is guaranteed to be the shortest one available, while it being unique.
-
-## CLI
-See `man webshorten`
