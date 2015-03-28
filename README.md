@@ -9,7 +9,7 @@ Utility for shortening ids and classnames.
 
 ## Usage
 ### CLI
-`webshortener [-h path] [--html path] [-c path] [--css path] [-j path] [--js path] path ...`
+`webshortener [-h path] [--html path] [-c path] [--css path] [-j path] [--js path] [-o path] [--output path] path ...`
 More at `man webshortener`
 
 ### As a library
