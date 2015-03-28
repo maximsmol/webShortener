@@ -1,6 +1,6 @@
 {
 	"name": "webshortener",
-	"version": "1.0.1",
+	"version": "1.2.0",
 	"description": "Utility for shortening ids and classnames.",
 
 	"keywords":
@@ -67,7 +67,8 @@
 
 	"dependencies":
 	{
-		"minimist": "~1.1.0"
+		"minimist": "~1.1.0",
+		"mkdirp": "~0.5.0"
 	},
 	"devDependencies":
 	{

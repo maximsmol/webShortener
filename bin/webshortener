@@ -7,6 +7,7 @@ var path = require('path');
 var fs = require('fs');
 
 var minimist = require('minimist');
+var mkdirp = require('mkdirp');
 var Shortener = require('../lib/webShortener.js');
 
 
@@ -16,20 +17,51 @@ if (process.argv.length < 3)
 {
 	console.log('Usage:');
 	console.log('webshortener [-h path] [--html path]',
-				'[-c path] [--css path] [-j path] [--js path] path ...');
+				'[-c path] [--css path] [-j path]',
+				' [--js path] [-o path] [--output path] path ...');
 	process.exit(1);
 }
 
 var htmlFiles = [];
 var jsFiles = [];
 var cssFiles = [];
+var outputPath = null;
 
+var normalizePath = function(path)
+{
+	var file = fs.realpathSync(path);
+	if (!fs.existsSync(file))
+		throw new Error('No such file: '+file);
+
+	return file;
+};
+outputPath = normalizePath(argv.o == null ? argv.output : argv.o);
+if (outputPath != null)
+{
+	if (!fs.statSync(outputPath).isDirectory())
+		throw new Error('Output is a file: '+outputPath);
+}
+
+var getOutputStream = function(filePath)
+{
+	var file = normalizePath(filePath);
+
+	if (outputPath == null)
+		return fs.createWriteStream(file+'.parsed');
+
+	var outputFile =
+		path.join(outputPath, path.relative(outputPath, file).substr(3));
+	mkdirp.sync(path.dirname(outputFile));
+
+	return fs.createWriteStream(
+		outputFile
+		// substr for removing the "../" part
+	);
+};
 
 var parsePath = function(filePath, addHtml, addCss, addJs)
 {
-	var file = fs.realpathSync(filePath);
-	if (!fs.existsSync(file))
-		throw new Error('No such file: '+file);
+	var file = normalizePath(filePath);
 
 	if (fs.statSync(filePath).isDirectory())
 	{
@@ -98,7 +130,7 @@ for (var i = 0; i < htmlFiles.length; i++)
 	var file = htmlFiles[i];
 
 	fs.createReadStream(file).pipe(shrtnr.htmlShortener())
-	.pipe(fs.createWriteStream(file+'.parsed'))
+	.pipe(getOutputStream(file))
 	.on('finish', printFinish(file));
 }
 
@@ -107,7 +139,7 @@ for (i = 0; i < cssFiles.length; i++)
 	var file = cssFiles[i];
 
 	fs.createReadStream(file).pipe(shrtnr.cssShortener())
-	.pipe(fs.createWriteStream(file+'.parsed'))
+	.pipe(getOutputStream(file))
 	.on('finish', printFinish(file));
 }
 
@@ -116,6 +148,6 @@ for (i = 0; i < jsFiles.length; i++)
 	var file = jsFiles[i];
 
 	fs.createReadStream(file).pipe(shrtnr.jsShortener())
-	.pipe(fs.createWriteStream(file+'.parsed'))
+	.pipe(getOutputStream(file))
 	.on('finish', printFinish(file));
 }

@@ -8,6 +8,8 @@
 [\fB\-\-css\fR=\fIpath\fR]
 [\fB\-j\fR \fIpath\fR]
 [\fB\-\-js\fR=\fIpath\fR]
+[\fB\-o\fR \fIpath\fR]
+[\fB\-\-output\fR=\fIpath\fR]
 [\fIpath\fR ...]
 .SH DESCRIPTION
 .B webshortener
@@ -23,6 +25,9 @@ Search for css files in \fIpath\fR
 .TP
 .BR \-j ", " \-\-js=\fIpath\fR
 Search for javascript files in \fIpath\fR
+.TP
+.BR \-o ", " \-\-output=\fIpath\fR
+Output processed files to \fIpath\fR, instead of to \fIfilename\fR\fB.parsed\fR
 .SH PATH FORMAT
 Path is a path to a \fIhtml\fR, \fIcss\fR or \fIjs\fR file
 or a folder, containing \fIhtml\fR, \fIcss\fR or \fIjs\fR files.
