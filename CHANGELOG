@@ -1,3 +1,6 @@
+# v1.2.1
+1. Fixed it parsing the output directory
+
 # v1.2.0
 1. CLI updated to take an output parameter
 
