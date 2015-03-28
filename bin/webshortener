@@ -29,9 +29,10 @@ var outputPath = null;
 
 var normalizePath = function(path)
 {
+	if (!fs.existsSync(path))
+		mkdirp.sync(path);
+
 	var file = fs.realpathSync(path);
-	if (!fs.existsSync(file))
-		throw new Error('No such file: '+file);
 
 	return file;
 };
@@ -62,13 +63,14 @@ var getOutputStream = function(filePath)
 var parsePath = function(filePath, addHtml, addCss, addJs)
 {
 	var file = normalizePath(filePath);
+	if (file === outputPath) return; // Don't parse the output directory
 
-	if (fs.statSync(filePath).isDirectory())
+	if (fs.statSync(file).isDirectory())
 	{
-		var files = fs.readdirSync(filePath);
+		var files = fs.readdirSync(file);
 		for (var i = 0; i < files.length; i++)
 		{
-			parsePath(path.join(filePath, files[i]), addHtml, addCss, addJs);
+			parsePath(path.join(file, files[i]), addHtml, addCss, addJs);
 		}
 
 		return;
